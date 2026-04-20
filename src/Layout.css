@@ -147,8 +147,11 @@
   font-size: 13px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #f8fbff;
-  text-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  color: #fffafc;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.22),
+    0 0 16px rgba(255, 175, 188, 0.42),
+    0 0 28px rgba(255, 115, 138, 0.18);
 }
 
 .hero-story-head-vert span {
@@ -157,8 +160,8 @@
 
 .hero-story-year {
   text-align: right;
-  color: #e7efff;
-  text-shadow: 0 0 16px rgba(31, 79, 255, 0.16);
+  color: #fff5f7;
+  text-shadow: 0 0 16px rgba(255, 120, 141, 0.24);
 }
 
 .hero-story-year span {
@@ -2806,10 +2809,11 @@
   --glyph-dur: 2.2s;
   position: relative;
   display: inline-block;
-  width: 0.72em;
+  width: 0.80em;
   height: 1em;
   vertical-align: baseline;
-  overflow: hidden;
+  overflow: visible;
+  flex: 0 0 auto;
 }
 
 .glyph-switch::before,
@@ -2972,13 +2976,15 @@
   font-size: 12px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
+  color: #ffffff;
 }
 
 .switch-btn.frosted em {
   margin-top: 4px;
   font-style: normal;
   font-size: 11px;
-  opacity: 0.84;
+  color: #ffeaf0;
+  opacity: 0.96;
 }
 
 .hero-dual-strip {
@@ -4244,6 +4250,7 @@
 
 .macro-interpretation p {
   font-size: 14px;
+  color: #ffe6ea;
 }
 
 .macro-stage-embed-frame {
