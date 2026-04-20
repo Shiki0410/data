@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import React from 'react';
 import type { HeroPlayer, HeroSceneProgress, HeroSceneState, HeroStoryStage } from './heroSceneTypes';
 
 type StageShellProps = {

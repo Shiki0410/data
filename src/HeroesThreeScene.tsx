@@ -7,6 +7,10 @@ type HeroesThreeSceneProps = {
   heroStoryStage: HeroStoryStage;
   heroSceneState: HeroSceneState;
   heroSceneProgress: HeroSceneProgress;
+  heroSummary?: {
+    batter?: { name: string; avgEV: number; avgLA: number; hardHit: number; barrels: number; spray?: Array<{ x: number; y: number }> } | null;
+    pitcher?: { name: string; avgVelo: number; avgSpin: number; topPitch: string; usage: Array<{ name: string; value: number }>; tunnel?: Array<{ x: number; y: number }> } | null;
+  };
 };
 
 type RibbonItem = {
@@ -41,7 +45,7 @@ const stageCards: Record<HeroSceneState, Array<{ title: string; value: string; n
   panel: [{ title: 'CHART', value: '15', note: '交互图表' }, { title: 'LIVE', value: '16', note: '鼠标驱动' }]
 };
 
-export function HeroesThreeScene({ heroPlayer, heroStoryStage, heroSceneState, heroSceneProgress }: HeroesThreeSceneProps) {
+export function HeroesThreeScene({ heroPlayer, heroStoryStage, heroSceneState, heroSceneProgress, heroSummary }: HeroesThreeSceneProps) {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5, active: false });
 
