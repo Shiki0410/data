@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -223,7 +223,9 @@ export const Component = ({ onEnter, onSkip, className }: HorizonHeroSectionProp
     tl.from(menuRef.current, { x: -20, opacity: 0, duration: 0.8 })
       .from(titleRef.current.querySelectorAll('.title-char'), { y: 120, opacity: 0, duration: 1.0, stagger: 0.04 }, '-=0.35')
       .from(subtitleRef.current.querySelectorAll('.subtitle-line'), { y: 30, opacity: 0, duration: 0.8, stagger: 0.15 }, '-=0.65');
-    return () => tl.kill();
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (

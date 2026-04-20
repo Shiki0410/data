@@ -214,8 +214,8 @@ export const buildStoryChartData = (ohtaniBatRows: BatRow[], yamamotoPitchRows: 
     });
 
     const spraySources = filtered.filter((r): r is BatRow & { hc_x: number; hc_y: number; events: string } => Number.isFinite(r.hc_x) && Number.isFinite(r.hc_y) && typeof r.events === 'string');
-    const sprayPoints: SprayPoint[] = spraySources
-      .map((r) => {
+    const sprayPoints = spraySources
+      .map((r): SprayPoint | null => {
         const hit = normalizeSprayHit(r.events);
         if (!hit) return null;
         return { x: r.hc_x, y: r.hc_y, hit, gameDate: r.game_date };
