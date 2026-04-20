@@ -397,19 +397,19 @@ export default function App() {
   };
 
   const galleryImages = [
-    { src: './图片/1a5110e9-e3ba-46e6-af0e-b80c93f8ef97.jpg', alt: 'Baseball reference map and player popularity' },
-    { src: './图片/483974778_1188211109563089_3678702623532556579_n.jpg', alt: 'Shohei Ohtani poster portrait' },
-    { src: './图片/php2r1bXB.jpg', alt: 'Shohei Ohtani close-up poster' },
-    { src: './图片/yoshinobu-yamamoto-is-our-lowest-paid-starting-pitcher-by-v0-jkqm9nsyt0zf1.webp', alt: 'Yoshinobu Yamamoto editorial portrait' },
-    { src: './图片/e7622e06-7f7c-78d6-83d7-e389202bdc52_620.jpg', alt: 'Celebration on the field' },
-    { src: './图片/player-redesign-promo.jpg', alt: 'Player redesign promo board' },
-    { src: './图片/1_s.jpg', alt: 'Early career portrait' },
-    { src: './图片/69AB997F620141772853631.jpeg', alt: 'Rising star focus' },
-    { src: './图片/69AB9A673414D1772853863.jpeg', alt: 'Breakout season portrait' },
-    { src: './图片/images.jpg', alt: 'Dominant batting moment' },
-    { src: './图片/67OqtXcnAmuwCmkMP6aph4OJjgxYCN0aIA0K0kMj.jpg', alt: 'Championship era collage' },
-    { src: './图片/cover_image_25103_46eca95e79.jpg', alt: 'World Series champion moment' },
-    { src: './图片/phpUoLh3G.jpg', alt: 'Dual-threat legacy portrait' }
+    { src: '/images/1a5110e9-e3ba-46e6-af0e-b80c93f8ef97.jpg', alt: 'Baseball reference map and player popularity' },
+    { src: '/images/483974778_1188211109563089_3678702623532556579_n.jpg', alt: 'Shohei Ohtani poster portrait' },
+    { src: '/images/php2r1bXB.jpg', alt: 'Shohei Ohtani close-up poster' },
+    { src: '/images/yoshinobu-yamamoto-is-our-lowest-paid-starting-pitcher-by-v0-jkqm9nsyt0zf1.webp', alt: 'Yoshinobu Yamamoto editorial portrait' },
+    { src: '/images/e7622e06-7f7c-78d6-83d7-e389202bdc52_620.jpg', alt: 'Celebration on the field' },
+    { src: '/images/player-redesign-promo.jpg', alt: 'Player redesign promo board' },
+    { src: '/images/1_s.jpg', alt: 'Early career portrait' },
+    { src: '/images/69AB997F620141772853631.jpeg', alt: 'Rising star focus' },
+    { src: '/images/69AB9A673414D1772853863.jpeg', alt: 'Breakout season portrait' },
+    { src: '/images/images.jpg', alt: 'Dominant batting moment' },
+    { src: '/images/67OqtXcnAmuwCmkMP6aph4OJjgxYCN0aIA0K0kMj.jpg', alt: 'Championship era collage' },
+    { src: '/images/cover_image_25103_46eca95e79.jpg', alt: 'World Series champion moment' },
+    { src: '/images/phpUoLh3G.jpg', alt: 'Dual-threat legacy portrait' }
   ];
 
   const [heroAim, setHeroAim] = useState({ x: 430, y: 145 });
@@ -418,10 +418,10 @@ export default function App() {
 
   useEffect(() => {
     Promise.all([
-      fetch('./23-26山本投手数据.csv').then((r) => r.text()),
-      fetch('./23-26大谷打者数据.csv').then((r) => r.text()),
-      fetch('./23-26道奇队打者数据.csv').then((r) => r.text()),
-      fetch('./23-26道奇队投手数据.csv').then((r) => r.text())
+      fetch('/data/23-26山本投手数据.csv').then((r) => r.text()),
+      fetch('/data/23-26大谷打者数据.csv').then((r) => r.text()),
+      fetch('/data/23-26道奇队打者数据.csv').then((r) => r.text()),
+      fetch('/data/23-26道奇队投手数据.csv').then((r) => r.text())
     ])
       .then(([pitchText, batText, teamBatText, teamPitchText]) => {
         const p = csvParse(pitchText).map((d) => {
@@ -2019,7 +2019,7 @@ export default function App() {
           <div className="macro-visual-panel-grid">
             <article className="macro-poster-card reveal-up">
               <div className="poster-main">
-                <img src={encodeURI('./数据图 (3).svg')} alt="Statcast Batting Statistics" className="macro-visual-image" />
+                <img src="/images/数据图 (3).svg" alt="Statcast Batting Statistics" className="macro-visual-image" />
               </div>
               <div className="poster-annotation-bar">
                 <span>主图</span>
@@ -2034,7 +2034,7 @@ export default function App() {
             </article>
             <article className="macro-poster-card reveal-up">
               <div className="poster-main">
-                <img src={encodeURI('./数据图 (2).svg')} alt="Batted Ball Profile" className="macro-visual-image" />
+                <img src="/images/数据图 (2).svg" alt="Batted Ball Profile" className="macro-visual-image" />
               </div>
               <div className="poster-annotation-bar">
                 <span>主图</span>
@@ -2099,7 +2099,7 @@ export default function App() {
                 <div className={`hero-photo-panel left ${heroPlayer === 'ohtani' ? 'active' : ''}`}>
                   <div className="hero-photo-media">
                     <img
-                      src={encodeURI('./选手底图 (1).jpg')}
+                      src="/images/选手底图 (1).jpg"
                       alt="Ohtani"
                     />
                   </div>
@@ -2107,7 +2107,7 @@ export default function App() {
                 <div className={`hero-photo-panel right ${heroPlayer === 'yamamoto' ? 'active' : ''}`}>
                   <div className="hero-photo-media">
                     <img
-                      src={encodeURI('./选手底图 (2).jpg')}
+                      src="/images/选手底图 (2).jpg"
                       alt="Yamamoto"
                     />
                   </div>
@@ -2257,7 +2257,7 @@ export default function App() {
 
                           <div className="yamamoto-group" key={`yamamoto-value-${selectedYear}`}>
                             <div className="yamamoto-group-title">
-                              <img src={encodeURI('./MLB官方数据可视化/slider-trophy.png')} alt="value" />
+                              <img src="/mlb/slider-trophy.png" alt="value" />
                               <span>Value</span>
                             </div>
                             {yamamotoPercentileGroups.valueRows.map((row, idx) => (
@@ -2274,7 +2274,7 @@ export default function App() {
 
                           <div className="yamamoto-group">
                             <div className="yamamoto-group-title">
-                              <img src={encodeURI('./MLB官方数据可视化/slider-pitcher.png')} alt="pitching" />
+                              <img src="/mlb/slider-pitcher.png" alt="pitching" />
                               <span>Pitching</span>
                             </div>
                             {yamamotoPercentileGroups.pitchingRows.map((row, idx) => (
@@ -2291,14 +2291,14 @@ export default function App() {
 
                           <div className="yamamoto-group">
                             <div className="yamamoto-group-title">
-                              <img src={encodeURI('./MLB官方数据可视化/slider-fielder.png')} alt="fielding" />
+                              <img src="/mlb/slider-fielder.png" alt="fielding" />
                               <span>Fielding</span>
                             </div>
                           </div>
 
                           <div className="yamamoto-group">
                             <div className="yamamoto-group-title">
-                              <img src={encodeURI('./MLB官方数据可视化/slider-runner.png')} alt="running" />
+                              <img src="/mlb/slider-runner.png" alt="running" />
                               <span>Running</span>
                             </div>
                             {yamamotoPercentileGroups.runningRows.map((row, idx) => (
@@ -2439,7 +2439,7 @@ export default function App() {
                                 })}
 
                                 <g transform="translate(326, 370) scale(1.04)">
-                                  <image href={encodeURI('./MLB官方数据可视化/SavantPitchers_mid_right_back.svg')} x="-28" y="-34" width="60" height="94" preserveAspectRatio="xMidYMid meet" opacity="0.96" />
+                                  <image href="/mlb/SavantPitchers_mid_right_back.svg" x="-28" y="-34" width="60" height="94" preserveAspectRatio="xMidYMid meet" opacity="0.96" />
                                   <g transform={`rotate(${movementPitchMeta.pitcherLineAngle} 11 34)`}>
                                     <line x1="11" y1="34" x2="48" y2="0" className="mov-arm-guide" />
                                     <circle cx="48" cy="0" r="2.7" className="mov-arm-joint" />
