@@ -1,0 +1,374 @@
+@font-face {
+  font-family: 'Futura Bold';
+  src: url('./font/Futura-Bold-5.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans Hans';
+  src: url('./font/NotoSansHans-Regular-2.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC Light';
+  src: url('./font/NotoSansSCLight-3.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PingFang SC Light';
+  src: url('./font/PINGFANGSC-LIGHT.OTF') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Yu Gothic M';
+  src: url('./font/YuGothM.ttc') format('collection');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Yu Gothic R';
+  src: url('./font/YuGothR.ttc') format('collection');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EVA Mincho';
+  src: url('./font/Futura-Bold-5.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EVA Grotesk';
+  src: url('./font/Futura-Bold-5.ttf') format('truetype');
+  font-display: swap;
+}
+
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #eef2f8;
+  --text: #0d1730;
+  --muted: rgba(13, 23, 48, 0.7);
+  --accent: #1e67ff;
+  --accent-hot: #ff3b6b;
+  --accent-soft: rgba(30, 103, 255, 0.12);
+  --dodger-blue: #1e90ff;
+  --title-font: 'EVA Mincho', 'Source Han Serif SC', 'Noto Serif SC', 'Noto Serif CJK SC', 'Hiragino Mincho ProN', 'Songti SC', 'Yu Mincho', 'Yu Gothic M', serif;
+  --body-font: 'Noto Sans Hans', 'Noto Sans SC', 'Noto Sans SC Light', 'PingFang SC', 'PingFang SC Light', 'Yu Gothic R', sans-serif;
+  --english-font: 'EVA Grotesk', 'Bodoni 72', 'Didot', 'Iowan Old Style', 'Times New Roman', serif;
+  --art-font: 'Yu Gothic M', 'Yu Gothic R', 'Noto Sans Hans', 'PingFang SC Light', 'Noto Sans SC Light', 'Source Han Serif SC', serif;
+  --eva-mono: 'SF Mono', 'Roboto Mono', 'Menlo', 'Consolas', monospace;
+  --hand-font: 'Yu Gothic M', 'Yu Gothic R', 'Kaiti SC', 'STKaiti', 'KaiTi', 'Noto Serif SC', serif;
+  --hero-title-size: clamp(52px, 10vw, 128px);
+  --title-track: -0.075em;
+  --subtitle-track: 0.14em;
+  --body-track: 0.01em;
+  --label-track: 0.22em;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body-font);
+}
+
+body {
+  cursor: none;
+  line-height: 1.72;
+  letter-spacing: -0.01em;
+}
+
+.reveal-line {
+  overflow: hidden;
+}
+
+.reveal-line > span {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.reveal-up {
+  will-change: transform, opacity;
+}
+
+.hero-title,
+.intro-title,
+.macro-title,
+.outro-title,
+.title-art,
+.eva-heading,
+.hero-title-heavy,
+.hero-title-light,
+.macro-title-mixed h3,
+.transition-title-main,
+.transition-title-ghost,
+.fragment-card h3,
+.matrix-head h4,
+.ability-matrix-card h4,
+.vertical-text {
+  letter-spacing: var(--title-track);
+  line-height: 0.88;
+  margin: 0;
+  font-family: var(--title-font);
+  font-weight: 900;
+  text-wrap: balance;
+  transform: scaleY(0.9);
+}
+
+.title-art,
+.hero-story-head h3,
+.hero-story-title,
+.fragment-card h3,
+.transition-title-main,
+.transition-title-ghost,
+.transition-copy-vert,
+.hero-fragment,
+.hero-story-head-vert,
+.hero-story-year,
+.hero-kicker,
+.chart-shell-eyebrow,
+.micro-label,
+.intro-label,
+.scroll-indicator,
+.fragment-id,
+.atlas-label,
+.yamamoto-story-jp,
+.ohtani-story-jp,
+.macro-visual-head h4,
+.poster-sidebar h4,
+.transition-overlay-label strong,
+.hero-intro-title,
+.hero-data-copy-title,
+.hero-data-eyebrow,
+.hero-data-chip span,
+.hero-data-chip em,
+.hero-data-window .chart-shell-eyebrow,
+.hero-data-window .chart-card h4,
+.hero-data-window .chart-toggle-row,
+.hero-data-window .module-btn,
+.macro-summary-head h4,
+.macro-chart-head h4,
+.macro-note-card h4,
+.macro-signal-head strong,
+.macro-signal-head span,
+.macro-signal-copy,
+.macro-topbar-item span,
+.macro-topbar-item strong,
+.macro-metric-card span,
+.macro-metric-card em,
+.macro-metric-card strong,
+.macro-interpretation strong,
+.macro-interpretation p,
+.macro-stage-mini-card span,
+.macro-stage-mini-card strong,
+.rolling-chart-title,
+.rolling-chart-kicker,
+.dodgers-summary-title,
+.dodgers-summary-card span,
+.dodgers-summary-leaders,
+.dodgers-summary-leader-row,
+.hero-year-pill span,
+.hero-year-pill em,
+.year-summary-chip span,
+.year-summary-chip strong,
+.year-summary-chip em,
+.savant-year-pill,
+.savant-usage-head span,
+.savant-usage-head strong,
+.savant-percentile-card span,
+.savant-percentile-card strong,
+.savant-percentile-card em,
+.vertical-text {
+  font-family: var(--art-font);
+}
+
+.hero-story-title,
+.macro-title,
+.outro-title {
+  font-family: var(--title-font);
+}
+
+.hero-title {
+  font-size: clamp(56px, 12vw, 210px);
+}
+
+.macro-title {
+  font-size: clamp(40px, 8vw, 128px);
+}
+
+.intro-title {
+  font-size: clamp(42px, 8.4vw, 128px);
+}
+
+.outro-title {
+  font-size: clamp(38px, 7vw, 100px);
+}
+
+.title-art {
+  font-style: normal;
+  letter-spacing: -0.03em;
+  text-rendering: optimizeLegibility;
+}
+
+.hero-story-title {
+  margin: 0;
+  font-size: var(--hero-title-size);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  font-family: var(--title-font);
+}
+
+.hero-story-desc,
+.hero-stage-panel span,
+.hero-stage-panel strong,
+.field-copy p,
+.macro-note-card p,
+.transition-lead,
+.atlas-summary,
+.fragment-desc,
+.dodgers-summary-card strong,
+.dodgers-summary-leader-row span,
+.dodgers-summary-leader-row strong,
+.hero-data-copy-body,
+.hero-data-chip em,
+.macro-interpretation p,
+.macro-signal-copy,
+.macro-topbar-item strong,
+.macro-stage-mini-card strong,
+.macro-metric-card em,
+.macro-metric-card strong,
+.savant-usage-head span,
+.savant-usage-head strong,
+.savant-percentile-card em,
+.savant-percentile-card strong,
+.hero-year-pill em,
+.year-summary-chip strong,
+.year-summary-chip em {
+  font-family: var(--body-font);
+  font-size: 14px;
+  line-height: 1.88;
+  letter-spacing: var(--body-track);
+}
+
+.transition-lead,
+.atlas-summary,
+.fragment-desc,
+.hero-story-desc,
+.macro-note-card p {
+  letter-spacing: 0.01em;
+}
+
+.hero-stage-panel strong {
+  font-size: 18px;
+  line-height: 1.18;
+}
+
+.hero-story-head h3,
+.fragment-card h3,
+.transition-title-main,
+.transition-title-ghost,
+.hero-intro-title,
+.intro-title,
+.hero-data-copy-title,
+.hero-data-eyebrow,
+.hero-data-chip span,
+.hero-data-window .chart-shell-eyebrow,
+.hero-data-window .chart-card h4,
+.hero-data-window .chart-toggle-row,
+.hero-data-window .module-btn,
+.macro-summary-head h4,
+.macro-chart-head h4,
+.macro-note-card h4,
+.macro-signal-head strong,
+.macro-signal-head span,
+.macro-signal-copy,
+.macro-topbar-item span,
+.macro-topbar-item strong,
+.macro-metric-card span,
+.macro-metric-card em,
+.macro-metric-card strong,
+.macro-interpretation strong,
+.macro-interpretation p,
+.macro-stage-mini-card span,
+.macro-stage-mini-card strong,
+.rolling-chart-title,
+.rolling-chart-kicker,
+.dodgers-summary-title,
+.dodgers-summary-card span,
+.dodgers-summary-leaders,
+.dodgers-summary-leader-row,
+.hero-year-pill span,
+.hero-year-pill em,
+.year-summary-chip span,
+.year-summary-chip strong,
+.year-summary-chip em,
+.savant-year-pill,
+.savant-usage-head span,
+.savant-usage-head strong,
+.savant-percentile-card span,
+.savant-percentile-card strong,
+.savant-percentile-card em {
+  font-family: var(--art-font);
+  letter-spacing: 0.02em;
+}
+
+.hero-stage-panel-label,
+.micro-label,
+.intro-label,
+.scroll-indicator,
+.fragment-id,
+.chart-shell-eyebrow,
+.field-kicker,
+.atlas-label,
+.macro-highlight-head span,
+.macro-summary-strip span,
+.transition-overlay-kicker,
+.hero-intro-kicker,
+.hero-intro-topline,
+.switch-btn span,
+.switch-btn em,
+.eva-data,
+.eva-caption {
+  font-family: var(--english-font);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  border-left: 2px solid currentColor;
+  padding-left: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.crt-glow {
+  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+}
