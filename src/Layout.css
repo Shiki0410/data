@@ -1136,6 +1136,23 @@
 .yamamoto-rankings-top-scale span:nth-child(2) { color: #9eb0bf; text-align: center; }
 .yamamoto-rankings-top-scale span:nth-child(3) { color: #d43637; text-align: right; }
 
+.yamamoto-rank-track .fill.high {
+  background: linear-gradient(90deg, #db222e 0%, #e2353f 100%);
+}
+
+.yamamoto-rank-track .fill.low {
+  background: linear-gradient(90deg, #b6c6cf 0%, #d3dde2 100%);
+}
+
+.yamamoto-rank-track b::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
 .yamamoto-group {
   margin-top: 8px;
   border-top: 1.5px solid rgba(34, 166, 190, 0.95);

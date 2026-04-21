@@ -386,6 +386,7 @@ export default function App() {
   const [selectedYear, setSelectedYear] = useState(2026);
   const [selectedBatter, setSelectedBatter] = useState('Ohtani, Shohei');
   const [selectedPitcher, setSelectedPitcher] = useState('Yamamoto, Yoshinobu');
+  const [selectedPitcherId, setSelectedPitcherId] = useState<number | null>(808967);
   const [sprayLayer, setSprayLayer] = useState({ singles: true, doubles: true, triples: true, homeRuns: true, trend: true, lgAvg: true });
   const [yearTransition, setYearTransition] = useState<{ from: number; to: number; direction: 1 | -1; active: boolean } | null>(null);
   const yearTransitionTimerRef = useRef<number | null>(null);
@@ -951,6 +952,12 @@ export default function App() {
     [teamPitchRows]
   );
 
+  const pitcherHeadshotIdMap: Record<string, number> = {
+    'Yamamoto, Yoshinobu': 808967,
+    'Ohtani, Shohei': 660271,
+    'Ohtani, Shohei ': 660271
+  };
+
   const pitchUsageYearRows = useMemo(() => {
     return pitchYearBuckets.map((bucket) => ({
       year: bucket.year,
@@ -1002,6 +1009,12 @@ export default function App() {
     () => teamPitchRows.find((r) => r.player_name === selectedPitcher),
     [teamPitchRows, selectedPitcher]
   );
+
+  useEffect(() => {
+    if (!selectedPitcherRow) return;
+    const id = pitcherHeadshotIdMap[selectedPitcherRow.player_name] ?? selectedPitcherRow.player_id ?? 808967;
+    setSelectedPitcherId(id);
+  }, [selectedPitcherRow]);
 
   const pitcherRadarMetrics = useMemo(() => {
     if (!selectedPitcherRow || !teamPitchRows.length) return null;
@@ -2260,16 +2273,19 @@ export default function App() {
                               <img src="/mlb/slider-trophy.png" alt="value" />
                               <span>Value</span>
                             </div>
-                            {yamamotoPercentileGroups.valueRows.map((row, idx) => (
-                              <div key={row.key} className="yamamoto-rank-row value" style={{ ['--row-delay' as any]: `${idx * 40}ms` }}>
-                                <div className="yamamoto-rank-label">{row.label}</div>
-                                <div className="yamamoto-rank-track">
-                                  <i style={{ width: `${row.pct}%` }} className={`fill ${row.lowIsBetter ? 'low' : 'high'}`} />
-                                  <b style={{ left: `${row.pct}%` }}>{row.pct}</b>
+                            {yamamotoPercentileGroups.valueRows.map((row, idx) => {
+                              const isAboveAverage = row.pct > 66;
+                              return (
+                                <div key={row.key} className="yamamoto-rank-row value" style={{ ['--row-delay' as any]: `${idx * 40}ms` }}>
+                                  <div className="yamamoto-rank-label">{row.label}</div>
+                                  <div className="yamamoto-rank-track">
+                                    <i style={{ width: `${row.pct}%` }} className={`fill ${isAboveAverage ? 'high' : 'low'}`} />
+                                    <b style={{ left: `${row.pct}%` }}>{row.pct === 66 ? '' : row.pct}</b>
+                                  </div>
+                                  <div className="yamamoto-rank-value">{row.display}</div>
                                 </div>
-                                <div className="yamamoto-rank-value">{row.display}</div>
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
 
                           <div className="yamamoto-group">
@@ -2277,16 +2293,19 @@ export default function App() {
                               <img src="/mlb/slider-pitcher.png" alt="pitching" />
                               <span>Pitching</span>
                             </div>
-                            {yamamotoPercentileGroups.pitchingRows.map((row, idx) => (
-                              <div key={row.key} className="yamamoto-rank-row" style={{ ['--row-delay' as any]: `${idx * 32 + 60}ms` }}>
-                                <div className="yamamoto-rank-label">{row.label}</div>
-                                <div className="yamamoto-rank-track">
-                                  <i style={{ width: `${row.pct}%` }} className={`fill ${row.lowIsBetter ? 'low' : 'high'}`} />
-                                  <b style={{ left: `${row.pct}%` }}>{row.pct}</b>
+                            {yamamotoPercentileGroups.pitchingRows.map((row, idx) => {
+                              const isAboveAverage = row.pct > 66;
+                              return (
+                                <div key={row.key} className="yamamoto-rank-row" style={{ ['--row-delay' as any]: `${idx * 32 + 60}ms` }}>
+                                  <div className="yamamoto-rank-label">{row.label}</div>
+                                  <div className="yamamoto-rank-track">
+                                    <i style={{ width: `${row.pct}%` }} className={`fill ${isAboveAverage ? 'high' : 'low'}`} />
+                                    <b style={{ left: `${row.pct}%` }}>{row.pct}</b>
+                                  </div>
+                                  <div className="yamamoto-rank-value">{row.display}</div>
                                 </div>
-                                <div className="yamamoto-rank-value">{row.display}</div>
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
 
                           <div className="yamamoto-group">
@@ -2301,16 +2320,19 @@ export default function App() {
                               <img src="/mlb/slider-runner.png" alt="running" />
                               <span>Running</span>
                             </div>
-                            {yamamotoPercentileGroups.runningRows.map((row, idx) => (
-                              <div key={row.key} className="yamamoto-rank-row" style={{ ['--row-delay' as any]: `${idx * 45 + 120}ms` }}>
-                                <div className="yamamoto-rank-label">{row.label}</div>
-                                <div className="yamamoto-rank-track">
-                                  <i style={{ width: `${row.pct}%` }} className={`fill ${row.lowIsBetter ? 'low' : 'high'}`} />
-                                  <b style={{ left: `${row.pct}%` }}>{row.pct}</b>
+                            {yamamotoPercentileGroups.runningRows.map((row, idx) => {
+                              const isAboveAverage = row.pct > 66;
+                              return (
+                                <div key={row.key} className="yamamoto-rank-row" style={{ ['--row-delay' as any]: `${idx * 45 + 120}ms` }}>
+                                  <div className="yamamoto-rank-label">{row.label}</div>
+                                  <div className="yamamoto-rank-track">
+                                    <i style={{ width: `${row.pct}%` }} className={`fill ${isAboveAverage ? 'high' : 'low'}`} />
+                                    <b style={{ left: `${row.pct}%` }}>{row.pct}</b>
+                                  </div>
+                                  <div className="yamamoto-rank-value">{row.display}</div>
                                 </div>
-                                <div className="yamamoto-rank-value">{row.display}</div>
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
                         </div>
                       </div>
@@ -2705,7 +2727,7 @@ export default function App() {
                 </select>
               </div>
               <div className="player-meta-row">
-                {selectedPitcherRow && <img className="player-headshot" src={headshotUrl(selectedPitcherRow.player_id)} alt={localShortName(selectedPitcherRow.player_name)} loading="lazy" />}
+                {selectedPitcherRow && <img className="player-headshot" src={headshotUrl(selectedPitcherId ?? selectedPitcherRow.player_id)} alt={localShortName(selectedPitcherRow.player_name)} loading="lazy" />}
                 <div className="player-chip pitcher">{selectedPitcherRow ? `${localShortName(selectedPitcherRow.player_name)} · K% ${selectedPitcherRow.k_percent.toFixed(1)} · 球速 ${selectedPitcherRow.velocity.toFixed(1)}mph` : '暂无数据'}</div>
               </div>
               <div className={`chart-box year-transition-${yearTransition?.active ? (yearTransition.direction > 0 ? 'forward' : 'backward') : 'steady'}`} ref={pitcherAbilityRef} />
